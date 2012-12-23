@@ -1,5 +1,6 @@
-import Posting._
-import sun.security.pkcs.ParsingException
+package main
+
+import scala.Posting
 
 object Main {
   def main(args: Array[String]) {

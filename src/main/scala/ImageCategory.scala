@@ -1,3 +1,5 @@
+package main.scala
+
 class ImageCategory extends Category {
   object Type extends Enumeration {
     val Z1 = Value("Movie")

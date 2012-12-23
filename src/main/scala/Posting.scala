@@ -1,3 +1,5 @@
+package main.scala
+
 import javax.swing.ImageIcon
 import swing.Image
 
@@ -12,7 +14,7 @@ abstract class Posting {
   val website: String
   //  val image: Image
   val image: String
-  //  val category: Category
+  //  val category: main.scala.Category
   val category: String
   //  val nzb: Nzb
   val nzb: String
@@ -46,7 +48,7 @@ object Posting {
       val description = (node \ "Description").text
       val website     = (node \ "Url").text
       val image       = (node \ "Image").text
-      val category    = (node \ "Category").text
+      val category    = (node \ "main.scala.Category").text
       val nzb         = (node \ "Nzb").text
     }
   }

@@ -1,8 +1,5 @@
 package main.scala
 
-import javax.swing.ImageIcon
-import swing.Image
-
 abstract class Posting {
   val key: String
   val poster: String
@@ -12,14 +9,11 @@ abstract class Posting {
   val size: BigInt
   val description: String
   val website: String
-  //  val image: Image
-  val image: String
-  //  val category: main.scala.Category
-  val category: String
-  //  val nzb: Nzb
-  val nzb: String
+  val image: scala.xml.NodeSeq
+  val category: scala.xml.NodeSeq
+  val nzb: scala.xml.NodeSeq
 
-  def toXml = {
+  def toXml =
     <Posting>
       <Key>{key}</Key>
       <Poster>{poster}</Poster>
@@ -29,11 +23,10 @@ abstract class Posting {
       <Size>{size}</Size>
       <Description>{description}</Description>
       <Website>{website}</Website>
-      <Image>{image}</Image>
-      <Category>{category}</Category>
-      <Nzb>{nzb}</Nzb>
+      {image}
+      {category}
+      {nzb}
     </Posting>
-  }
 }
 
 object Posting {
@@ -46,10 +39,10 @@ object Posting {
       val created     = BigInt((node \ "Created").text)
       val size        = BigInt((node \ "Size").text)
       val description = (node \ "Description").text
-      val website     = (node \ "Url").text
-      val image       = (node \ "Image").text
-      val category    = (node \ "main.scala.Category").text
-      val nzb         = (node \ "Nzb").text
+      val website     = (node \ "Website").text
+      val image       = (node \ "Image")
+      val category    = (node \ "Category")
+      val nzb         = (node \ "NZB")
     }
   }
 }

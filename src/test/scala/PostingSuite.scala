@@ -19,14 +19,16 @@ class PostingSuite extends FunSuite with BeforeAndAfter {
         <Size>{BigInt("4109345074")}</Size>
         <Description>Desc</Description>
         <Website>http://www.ubuntu.org/</Website>
-        <Image Width="300" Height="300"> . <Segment>CFjxzDs72OhuOUaTgAjon6@spot.net</Segment> . </Image>
-        <Category>04 . <Sub>04a03</Sub> . <Sub>04b03</Sub> . <Sub>04c00</Sub> . <Sub>04c11</Sub> . <Sub>04d20</Sub> . </Category>
-        <NZB> . <Segment>Pb3SJx8hbGko0NOUaTgA@spot.net</Segment> . </NZB>
+        <Image Width="300" Height="300"><Segment>CFjxzDs72OhuOUaTgAjon6@spot.net</Segment></Image>
+        <Category>04<Sub>04a03</Sub><Sub>04b03</Sub><Sub>04c00</Sub><Sub>04c11</Sub><Sub>04d20</Sub></Category>
+        <NZB><Segment>Pb3SJx8hbGko0NOUaTgA@spot.net</Segment></NZB>
       </Posting>
   }
 
   test("Posting preserves content of XML") {
     val cur =  Posting.fromXml(target).toXml
-    assert(trim(cur) == trim(target), cur.child diff target.child)
+    expect(trim(target)) {
+      trim(cur)
+    }
   }
 }

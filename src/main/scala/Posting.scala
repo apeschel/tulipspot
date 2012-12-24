@@ -11,7 +11,7 @@ abstract class Posting {
   val website: String
   val image: scala.xml.NodeSeq
   val category: scala.xml.NodeSeq
-  val nzb: scala.xml.NodeSeq
+  val nzb: List[Nzb]
 
   def toXml =
     <Posting>
@@ -25,7 +25,7 @@ abstract class Posting {
       <Website>{website}</Website>
       {image}
       {category}
-      {nzb}
+      {nzb.map {_.toXml}}
     </Posting>
 }
 
@@ -42,7 +42,7 @@ object Posting {
       val website     = (node \ "Website").text
       val image       = (node \ "Image")
       val category    = (node \ "Category")
-      val nzb         = (node \ "NZB")
+      val nzb         = (node \ "NZB").map(Nzb.fromXml).toList
     }
   }
 }
